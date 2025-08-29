@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dlvbknrdc8pwk"]
+[gd_scene load_steps=45 format=3 uid="uid://dlvbknrdc8pwk"]
 
 [ext_resource type="Script" uid="uid://bu2qxirakrspj" path="res://character_body_2d.gd" id="1_vvf27"]
 [ext_resource type="Texture2D" uid="uid://d4cnogkr6xd1r" path="res://Fighter/Jump.png" id="2_gn376"]
@@ -8,9 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://580gacpdbp0r" path="res://Fighter/Run.png" id="3_114o1"]
 [ext_resource type="Script" uid="uid://dl3ru7044h2oh" path="res://static_body_2d.gd" id="3_k0c8s"]
 [ext_resource type="Texture2D" uid="uid://dddgpovbc1btb" path="res://Fighter/Attack_2.png" id="3_kk4oa"]
+[ext_resource type="PackedScene" uid="uid://dq4fkh4oseelt" path="res://health_bar.tscn" id="9_kk4oa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_114o1"]
-size = Vector2(265, 46)
+size = Vector2(265, 51)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mq83f"]
 atlas = ExtResource("2_nvt02")
@@ -253,7 +254,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s3elh"]
-size = Vector2(79, 208.031)
+size = Vector2(60, 136)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vvf27"]
 size = Vector2(45.6055, 20.9667)
@@ -264,34 +265,38 @@ metadata/_edit_horizontal_guides_ = [-184.0]
 
 [node name="Plataforma" type="Node2D" parent="."]
 physics_interpolation_mode = 1
-position = Vector2(-496, 37)
+position = Vector2(-244, -46)
+scale = Vector2(0.978672, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Plataforma"]
+position = Vector2(-8.17434, -8)
 script = ExtResource("3_k0c8s")
 
 [node name="Sprite2D" type="Sprite2D" parent="Plataforma/StaticBody2D"]
-position = Vector2(273, 722)
+position = Vector2(273.84, 722)
 scale = Vector2(2.08391, 0.410156)
 texture = ExtResource("2_k0c8s")
+offset = Vector2(-0.40332, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Plataforma/StaticBody2D"]
-position = Vector2(274, 725)
+position = Vector2(274, 722.5)
 shape = SubResource("RectangleShape2D_114o1")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(4065, -147)
+position = Vector2(4576, -263)
 script = ExtResource("1_vvf27")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
-position = Vector2(-5138, 858)
-scale = Vector2(3.07031, 2.56995)
+position = Vector2(-5155, 858)
+scale = Vector2(2, 1.674)
 sprite_frames = SubResource("SpriteFrames_fgyiu")
-animation = &"Parado"
+animation = &"run"
 autoplay = "Parado"
+frame_progress = 0.835668
 speed_scale = 4.0
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(-5147, 915)
+position = Vector2(-5161, 900)
 shape = SubResource("RectangleShape2D_s3elh")
 one_way_collision_margin = 5.0
 
@@ -302,8 +307,17 @@ position = Vector2(-4755, 758)
 rotation = -3.48019
 zoom = Vector2(0.9, 1.2)
 
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="health_bar" parent="HUD" instance=ExtResource("9_kk4oa")]
+offset_left = 36.0
+offset_top = 62.0
+offset_right = 234.0
+offset_bottom = 87.0
+value = 100.0
+
 [node name="Cenário" type="Node2D" parent="."]
-position = Vector2(-467, 109)
+position = Vector2(-1080, 4)
 scale = Vector2(1.09573, 1.20259)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Cenário"]

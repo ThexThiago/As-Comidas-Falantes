@@ -15,6 +15,12 @@ run/main_scene="uid://dlvbknrdc8pwk"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[importer_defaults]
+
+animation_library={
+&"animation/fps": 60.0
+}
+
 [input]
 
 ui_attack={
@@ -25,5 +31,4 @@ ui_attack={
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
+renderer/rendering_method="mobile"
